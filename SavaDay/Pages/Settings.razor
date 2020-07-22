@@ -1,0 +1,79 @@
+﻿@page "/settings"
+
+<h1>Settings</h1>
+
+<p>
+    Current app settngs:<br />
+    <br />
+    Current click coutner: @currentCount<br />
+    <br />
+    Increment: @increment<br />
+    Money: @money<br />
+    Total: @total<br />
+    Start: @start<br />
+    End: @end<br />
+    Info: @info<br />
+    Result: @result<br />
+</p>
+
+<p>
+    Thank you!
+</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
+<button class="btn btn-primary" @onclick="Reset">Reset</button>
+
+@code {
+    private double increment = 0.01;
+    private double total = 0.00;
+    private int start = 1; //set day
+    private int end = 22;
+    private string info = "";
+    private string result = "";
+
+    private double beginAmount = 1.83;
+    private double money;
+    private int time;
+
+    private void CalculateAmount()
+    {
+        money = beginAmount - increment; //get day
+        time = end - start;
+
+        for (int i = 0; i <= time; i++)
+        {
+            money = money + increment;
+            total += money;
+            // does not work ? info = "Indexed steps: " + i + " Day amount: " + money + " Total amount: " + total;
+
+        }
+
+        info = "Indexed steps: " + time + " Day amount: " + money + " Total amount: " + total;
+
+        result = "This is the result: " + total;
+    }
+
+    private void Reset()
+    {
+        money = 0;
+        total = 0;
+        info = "";
+        result = "";
+    }
+
+    //    console.log(
+
+    //    var walletMoney = 81; //get wallet
+    //    console.log("Transfer this from wallet to savings: ", walletMoney - total);
+
+    /// <summary>
+    ///
+    /// </summary>
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
