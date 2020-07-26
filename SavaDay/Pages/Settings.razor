@@ -5,13 +5,12 @@
 <p>
     Current app settngs:<br />
     <br />
-    Current click coutner: @currentCount<br />
-    <br />
     Increment: @increment<br />
     Money: @money<br />
     Total: @total<br />
     Start: @start<br />
     End: @end<br />
+    Begin amount: @beginAmount<br />
     Info: @info<br />
     Result: @result<br />
 </p>
@@ -20,21 +19,50 @@
     Thank you!
 </p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
 <button class="btn btn-primary" @onclick="Reset">Reset</button>
+<br />
+<br />
+
+<form class="form-check">
+    <div class="form-group">
+        <label for="start1">Start date:</label>
+
+        <input type="number" class="form-control" id="startForm" @bind="start">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="end">End date:</label>
+
+        <input type="number" class="form-control" id="endForm" @bind="end">
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="beginAmount">Begin amount:</label>
+
+        <input type="text" class="form-control" id="beginAmountForm" @bind="beginAmount">
+    </div>
+    <br />
+    @*<br />
+        <button type="submit" class="btn btn-primary" @onclick="SetData">Set Data</button>*@
+</form>
 
 @code {
     private double increment = 0.01;
     private double total = 0.00;
-    private int start = 1; //set day
-    private int end = 22;
+    private int start = 0; //set day
+    private int end = 0;
     private string info = "";
     private string result = "";
 
-    private double beginAmount = 1.83;
+    private double beginAmount = 0;
     private double money;
     private int time;
+
+    //private void SetData()
+    //{
+    //    // to do>
+    //}
 
     private void CalculateAmount()
     {
@@ -60,20 +88,9 @@
         total = 0;
         info = "";
         result = "";
-    }
 
-    //    console.log(
-
-    //    var walletMoney = 81; //get wallet
-    //    console.log("Transfer this from wallet to savings: ", walletMoney - total);
-
-    /// <summary>
-    ///
-    /// </summary>
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
+        start = 0;
+        end = 0;
+        beginAmount = 0;
     }
 }
