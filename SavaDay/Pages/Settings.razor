@@ -5,59 +5,63 @@
 <p>
     Current app settngs:<br />
     <br />
-    Increment: @increment<br />
-    Money: @money<br />
-    Total: @total<br />
-    Start: @start<br />
-    End: @end<br />
-    Begin amount: @beginAmount<br />
-    Info: @info<br />
-    Result: @result<br />
+    Start day: @startDay<br />
+    End day: @endDay<br />
+    Begin amount for current day: @beginAmount<br />
+    Total Days: @totalDaysText<br />
+    <br />
+    Total amount: @totalAmount<br />
 </p>
-
-<p>
-    Thank you!
-</p>
-
-<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
-<button class="btn btn-primary" @onclick="Reset">Reset</button>
-<br />
 <br />
 
-<form class="form-check">
+<form class="form-check-inline">
     <div class="form-group">
         <label for="start1">Start date:</label>
 
-        <input type="number" class="form-control" id="startForm" @bind="start">
+        <input type="number" class="form-control" id="startForm" @bind="startDay">
     </div>
     <br />
+
     <div class="form-group">
         <label for="end">End date:</label>
 
-        <input type="number" class="form-control" id="endForm" @bind="end">
+        <input type="number" class="form-control" id="endForm" @bind="endDay">
     </div>
     <br />
+
     <div class="form-group">
         <label for="beginAmount">Begin amount:</label>
 
         <input type="text" class="form-control" id="beginAmountForm" @bind="beginAmount">
     </div>
     <br />
+
+    <div class="form-group">
+        <label for="start1">Increment:</label>
+
+        <input type="number" class="form-control" id="increment" @bind="increment" placeholder="0.01">
+    </div>
+    <br />
+
     @*<br />
         <button type="submit" class="btn btn-primary" @onclick="SetData">Set Data</button>*@
 </form>
+<br />
+
+<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
+<button class="btn btn-primary" @onclick="Reset">Reset</button>
+<br />
 
 @code {
-    private double increment = 0.01;
-    private double total = 0.00;
-    private int start = 0; //set day
-    private int end = 0;
-    private string info = "";
-    private string result = "";
+    private double increment = 0.01; // default value, user can change it.
+    private double totalAmount = 0.00;
+    private int startDay = 0;
+    private int endDay = 0;
+    private string totalDaysText = "Click calculate";
 
     private double beginAmount = 0;
-    private double money;
-    private int time;
+    private double moneyTotal;
+    private int totalDays;
 
     //private void SetData()
     //{
@@ -66,31 +70,41 @@
 
     private void CalculateAmount()
     {
-        money = beginAmount - increment; //get day
-        time = end - start;
+        // Clears amount if user press calculate multiple times.
+        totalAmount = 0;
 
-        for (int i = 0; i <= time; i++)
+        moneyTotal = beginAmount - increment; // Increases the amount per day with the given begin amount
+        totalDays = endDay - startDay;
+
+        for (int i = 0; i <= totalDays; i++)
         {
-            money = money + increment;
-            total += money;
-            // does not work ? info = "Indexed steps: " + i + " Day amount: " + money + " Total amount: " + total;
-
+            moneyTotal = moneyTotal + increment;
+            totalAmount += moneyTotal;
         }
 
-        info = "Indexed steps: " + time + " Day amount: " + money + " Total amount: " + total;
-
-        result = "This is the result: " + total;
+        totalDaysText = (totalDays + 1 /*accounts for dates like start 1 end 2 = should be 2 days */).ToString();
     }
 
     private void Reset()
     {
-        money = 0;
-        total = 0;
-        info = "";
-        result = "";
+        moneyTotal = 0;
+        totalAmount = 0;
+        totalDaysText = "";
 
-        start = 0;
-        end = 0;
+        startDay = 0;
+        endDay = 0;
         beginAmount = 0;
     }
 }
+
+<br />
+<p>
+    Todo:
+</p>
+<p>
+    Add check on form for dates;<br />
+    Add ability to use both comma and period separators;<br />
+    Display total with decimal point;<br />
+    Transfer result to calculator;<br />
+    Add current saved amount;
+</p>
