@@ -1,4 +1,4 @@
-﻿namespace SavaDay
+﻿namespace SavaDay.Items
 {
     public class TodoItem
     {

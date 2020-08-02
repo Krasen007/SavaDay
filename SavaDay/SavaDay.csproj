@@ -9,7 +9,7 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <Authors>Krasen Ivanov</Authors>
     <Copyright>Krasen Ivanov 2020</Copyright>
-    <Version>0.0.3.0</Version>
+    <Version>0.0.4.0</Version>
     <AssemblyName>SavaDay</AssemblyName>
   </PropertyGroup>
 
@@ -22,10 +22,6 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Items\" />
   </ItemGroup>
 
 </Project>
