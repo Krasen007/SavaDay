@@ -3,30 +3,37 @@
 <h1>Settings</h1>
 
 <p>
-    Current increment settngs: @userIncrement.IncrementAmount <br />   
+    The default value is 0.01 wich if you increase the amount every day with 0.01 at the end of the year you will save 664.30 cash.<br />
+    If you set the increment higher you will ammass more money faster.<br />
+    Bigger increments may be useful for shorter periods of saving.
 </p>
-<br />
 
 <form class="form-check-inline">
     <div class="form-group">
-        <label for="start1">Increment:</label>
-
-        <input type="number" class="form-control" id="increment" @bind="userIncrement.IncrementAmount" placeholder="0.01">
+        <label for="start1">Current increment:</label>
+        <input type="number" class="form-control" id="increment" @bind="Increment.IncrementAmount">
     </div>
     <br />
 </form>
 <br />
 
 <button class="btn btn-primary" @onclick="Reset">Reset</button>
+<button class="btn btn-primary" @onclick="Set">Set</button> @message
+
 <br />
 
 @code {
-    public Increment userIncrement = new Increment();
-    private double defaultIncrement = 0.01;
+    private string message = string.Empty;
 
     private void Reset()
     {
-        userIncrement.IncrementAmount = defaultIncrement;        
+        Increment.IncrementAmount = Increment.DefaultIncrementAmount;
+        message = string.Empty;
+    }
+    private void Set()
+    {
+        // Confirms user chioce.
+        message = " All done! Go back to home page.";
     }
 }
 

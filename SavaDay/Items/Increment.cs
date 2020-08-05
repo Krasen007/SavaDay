@@ -1,7 +1,8 @@
 namespace SavaDay.Items
 {
-    public class Increment
+    public static class Increment
     {
-        public double IncrementAmount { get; set; } = 0.01; // default value, user can change it.
+        public static double DefaultIncrementAmount { get; } = 0.01; // default value, user can change it.
+        public static double IncrementAmount { get; set; } = DefaultIncrementAmount; // default value, user can change it.
     }
 }

@@ -16,6 +16,7 @@ Your balance right now is: TODO
 
 <p>
     <br />
+    Current increment settngs: @Increment.IncrementAmount <br />
     Total Days: @totalDaysText<br />
     Total amount for saving: @totalAmount<br />
 </p>
@@ -49,7 +50,6 @@ Your balance right now is: TODO
 <br />
 
 @code {
-    public Increment userIncrement = new Increment();
     private double totalAmount = 0.00;
     private int startDay = 0;
     private int endDay = 0;
@@ -63,12 +63,12 @@ Your balance right now is: TODO
     {
         // Clears amount if user press calculate multiple times.
         totalAmount = 0;
-        moneyTotal = beginAmount - userIncrement.IncrementAmount; // Increases the amount per day with the given begin amount
+        moneyTotal = beginAmount - Increment.IncrementAmount; // Increases the amount per day with the given begin amount
         totalDays = endDay - startDay;
 
         for (int i = 0; i <= totalDays; i++)
         {
-            moneyTotal = moneyTotal + userIncrement.IncrementAmount;
+            moneyTotal = moneyTotal + Increment.IncrementAmount;
             totalAmount += moneyTotal;
         }
 
@@ -79,7 +79,7 @@ Your balance right now is: TODO
     {
         moneyTotal = 0;
         totalAmount = 0;
-        totalDaysText = "";
+        totalDaysText = "Click calculate";
 
         startDay = 0;
         endDay = 0;

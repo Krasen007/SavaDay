@@ -14,11 +14,11 @@ a, .btn-link {
     border-color: #336633;
 }
 
-.btn-primary:hover {
-    color: #fff;
-    background-color: #288328;
-    border-color: #336633;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #288328;
+        border-color: #336633;
+    }
 
 app {
     position: relative;
