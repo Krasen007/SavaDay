@@ -9,7 +9,7 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <Authors>Krasen Ivanov</Authors>
     <Copyright>Krasen Ivanov 2020</Copyright>
-    <Version>0.0.6.0</Version>
+    <Version>0.0.7.0</Version>
     <AssemblyName>SavaDay</AssemblyName>
   </PropertyGroup>
 

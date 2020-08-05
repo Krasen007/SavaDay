@@ -37,7 +37,7 @@
     <div class="form-group">
         <label for="start1">Increment:</label>
 
-        <input type="number" class="form-control" id="increment" @bind="increment" placeholder="0.01">
+        <input type="number" class="form-control" id="increment" @bind="userIncrement.IncrementAmount" placeholder="0.01">
     </div>
     <br />
 
@@ -52,7 +52,7 @@
 <br />
 
 @code {
-    private double increment = 0.01; // default value, user can change it.
+    private Increment userIncrement = new Increment();
     private double totalAmount = 0.00;
     private int startDay = 0;
     private int endDay = 0;
@@ -62,22 +62,17 @@
     private double moneyTotal;
     private int totalDays;
 
-    //private void SetData()
-    //{
-    //    // to do>
-    //}
-
     private void CalculateAmount()
     {
         // Clears amount if user press calculate multiple times.
         totalAmount = 0;
 
-        moneyTotal = beginAmount - increment; // Increases the amount per day with the given begin amount
+        moneyTotal = beginAmount - userIncrement.IncrementAmount; // Increases the amount per day with the given begin amount
         totalDays = endDay - startDay;
 
         for (int i = 0; i <= totalDays; i++)
         {
-            moneyTotal = moneyTotal + increment;
+            moneyTotal = moneyTotal + userIncrement.IncrementAmount;
             totalAmount += moneyTotal;
         }
 
