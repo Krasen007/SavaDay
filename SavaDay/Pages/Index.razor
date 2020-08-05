@@ -13,3 +13,76 @@ On your way to SavaDay!
 <br />
 <br />
 Your balance right now is: TODO
+
+<p>
+    <br />
+    Total Days: @totalDaysText<br />
+    Total amount for saving: @totalAmount<br />
+</p>
+
+<form class="form-check-inline">
+    <div class="form-group">
+        <label for="start1">Start date:</label>
+
+        <input type="number" class="form-control" id="startForm" @bind="startDay">
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="end">End date:</label>
+
+        <input type="number" class="form-control" id="endForm" @bind="endDay">
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label for="beginAmount">Begin amount:</label>
+
+        <input type="text" class="form-control" id="beginAmountForm" @bind="beginAmount">
+    </div>
+    <br />
+</form>
+<br />
+
+<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
+<button class="btn btn-primary" @onclick="Reset">Reset</button>
+<br />
+
+@code {
+    public Increment userIncrement = new Increment();
+    private double totalAmount = 0.00;
+    private int startDay = 0;
+    private int endDay = 0;
+    private string totalDaysText = "Click calculate";
+
+    private double beginAmount = 0;
+    private double moneyTotal;
+    private int totalDays;
+
+    private void CalculateAmount()
+    {
+        // Clears amount if user press calculate multiple times.
+        totalAmount = 0;
+        moneyTotal = beginAmount - userIncrement.IncrementAmount; // Increases the amount per day with the given begin amount
+        totalDays = endDay - startDay;
+
+        for (int i = 0; i <= totalDays; i++)
+        {
+            moneyTotal = moneyTotal + userIncrement.IncrementAmount;
+            totalAmount += moneyTotal;
+        }
+
+        totalDaysText = (totalDays + 1 /*accounts for dates like start 1 end 2 = should be 2 days */).ToString();
+    }
+
+    private void Reset()
+    {
+        moneyTotal = 0;
+        totalAmount = 0;
+        totalDaysText = "";
+
+        startDay = 0;
+        endDay = 0;
+        beginAmount = 0;
+    }
+}

@@ -3,91 +3,30 @@
 <h1>Settings</h1>
 
 <p>
-    Current app settngs:<br />
-    TODO: Set goal for saving, ex. month year, set increment, generate table with days, move calculate to dashboard.
-    <br />
-    <br />
-    Total Days: @totalDaysText<br />
-    Total amount for saving: @totalAmount<br />
+    Current increment settngs: @userIncrement.IncrementAmount <br />   
 </p>
 <br />
 
 <form class="form-check-inline">
-    <div class="form-group">
-        <label for="start1">Start date:</label>
-
-        <input type="number" class="form-control" id="startForm" @bind="startDay">
-    </div>
-    <br />
-
-    <div class="form-group">
-        <label for="end">End date:</label>
-
-        <input type="number" class="form-control" id="endForm" @bind="endDay">
-    </div>
-    <br />
-
-    <div class="form-group">
-        <label for="beginAmount">Begin amount:</label>
-
-        <input type="text" class="form-control" id="beginAmountForm" @bind="beginAmount">
-    </div>
-    <br />
-
     <div class="form-group">
         <label for="start1">Increment:</label>
 
         <input type="number" class="form-control" id="increment" @bind="userIncrement.IncrementAmount" placeholder="0.01">
     </div>
     <br />
-
-    @*<br />
-        <button type="submit" class="btn btn-primary" @onclick="SetData">Set Data</button>*@
 </form>
 <br />
 
-<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
 <button class="btn btn-primary" @onclick="Reset">Reset</button>
-
 <br />
 
 @code {
-    private Increment userIncrement = new Increment();
-    private double totalAmount = 0.00;
-    private int startDay = 0;
-    private int endDay = 0;
-    private string totalDaysText = "Click calculate";
-
-    private double beginAmount = 0;
-    private double moneyTotal;
-    private int totalDays;
-
-    private void CalculateAmount()
-    {
-        // Clears amount if user press calculate multiple times.
-        totalAmount = 0;
-
-        moneyTotal = beginAmount - userIncrement.IncrementAmount; // Increases the amount per day with the given begin amount
-        totalDays = endDay - startDay;
-
-        for (int i = 0; i <= totalDays; i++)
-        {
-            moneyTotal = moneyTotal + userIncrement.IncrementAmount;
-            totalAmount += moneyTotal;
-        }
-
-        totalDaysText = (totalDays + 1 /*accounts for dates like start 1 end 2 = should be 2 days */).ToString();
-    }
+    public Increment userIncrement = new Increment();
+    private double defaultIncrement = 0.01;
 
     private void Reset()
     {
-        moneyTotal = 0;
-        totalAmount = 0;
-        totalDaysText = "";
-
-        startDay = 0;
-        endDay = 0;
-        beginAmount = 0;
+        userIncrement.IncrementAmount = defaultIncrement;        
     }
 }
 
@@ -102,4 +41,5 @@
     Transfer result to calculator;<br />
     Add current saved amount;<br />
     Add persistence of user money amount when the last time the app was run;<br />
+    Set goal for saving, ex. month year, set increment, generate table with days, move calculate to dashboard;<br />
 </p>
