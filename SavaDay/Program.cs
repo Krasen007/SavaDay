@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 
 namespace SavaDay
 {
@@ -19,6 +20,7 @@ namespace SavaDay
 
             builder.Services.AddTransient(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddSingleton<Services.AppData>();
+            builder.Services.AddBlazoredLocalStorage();
 
             await builder.Build().RunAsync().ConfigureAwait(false);
         }

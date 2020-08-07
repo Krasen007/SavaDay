@@ -9,11 +9,12 @@
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
     <Authors>Krasen Ivanov</Authors>
     <Copyright>Krasen Ivanov 2020</Copyright>
-    <Version>0.0.9.0</Version>
+    <Version>0.0.9.1</Version>
     <AssemblyName>SavaDay</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazored.LocalStorage" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="3.2.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Build" Version="3.2.1" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="3.2.1" PrivateAssets="all" />
@@ -29,7 +30,7 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <BlazorWebAssemblyEnableLinking  Condition="'$(Configuration)'!='Release'">false</BlazorWebAssemblyEnableLinking> <!-- Remove this later -->
+    <BlazorWebAssemblyEnableLinking Condition="'$(Configuration)'!='Release'">false</BlazorWebAssemblyEnableLinking> <!-- Remove this later -->
   </PropertyGroup>
 
 </Project>

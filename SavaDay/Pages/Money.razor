@@ -1,19 +1,31 @@
 ﻿@page "/money"
 @inject Services.AppData AppData
+@inject Blazored.LocalStorage.ILocalStorageService localStore
 
-<h1>Money Page</h1>
+<h1>Money Page LocalStorage</h1>
 
-<p>You entered the number @AppData.Age.</p>
-
-<p>Current amount: @currentMoneyCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<textarea @bind="noteContent" />
+<br />
+<button @onclick="UpdateLocalStorage">Save</button>
+<button @onclick="ClearLocalStorage">Clear</button>
 
 @code {
-    private int currentMoneyCount = 0;
+    const string noteKey = "note";
+    string noteContent = string.Empty;
 
-    private void IncrementCount()
+    public async void UpdateLocalStorage()
     {
-        currentMoneyCount++;
+        await localStore.SetItemAsync(noteKey, noteContent);
+    }
+
+    public async void ClearLocalStorage()
+    {
+        noteContent = string.Empty;
+        await localStore.ClearAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        noteContent = await localStore.GetItemAsync<string>(noteKey);
     }
 }
