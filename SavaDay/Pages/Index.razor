@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject Services.AppData AppData
 
 <h1>Dashboard</h1>
 
@@ -16,7 +17,7 @@ Your balance right now is: TODO
 
 <p>
     <br />
-    Current increment settngs: @Increment.IncrementAmount.ToString(format: "0.00") <br />
+    Current increment settngs: @AppData.IncrementAmount.ToString(format: "0.00") <br />
     Total Days: @totalDaysText<br />
     Total amount for saving: @totalAmount.ToString(format: "0.00")<br />
     Current date: @date2 @*, you selected @date1*@
@@ -72,12 +73,12 @@ Your balance right now is: TODO
     {
         // Clears amount if user press calculate multiple times.
         totalAmount = 0;
-        moneyTotal = beginAmount - Increment.IncrementAmount; // Increases the amount per day with the given begin amount
+        moneyTotal = beginAmount - AppData.IncrementAmount; // Increases the amount per day with the given begin amount
         totalDays = endDay - startDay;
 
         for (int i = 0; i <= totalDays; i++)
         {
-            moneyTotal = moneyTotal + Increment.IncrementAmount;
+            moneyTotal = moneyTotal + AppData.IncrementAmount;
             totalAmount += moneyTotal;
         }
 

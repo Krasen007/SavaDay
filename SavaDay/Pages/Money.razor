@@ -1,0 +1,19 @@
+﻿@page "/money"
+@inject Services.AppData AppData
+
+<h1>Money Page</h1>
+
+<p>You entered the number @AppData.Age.</p>
+
+<p>Current amount: @currentMoneyCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentMoneyCount = 0;
+
+    private void IncrementCount()
+    {
+        currentMoneyCount++;
+    }
+}

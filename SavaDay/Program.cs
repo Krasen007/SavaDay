@@ -18,6 +18,7 @@ namespace SavaDay
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddTransient(_ => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddSingleton<Services.AppData>();
 
             await builder.Build().RunAsync().ConfigureAwait(false);
         }
