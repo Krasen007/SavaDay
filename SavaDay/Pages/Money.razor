@@ -4,12 +4,55 @@
 
 <h1>Money Page LocalStorage</h1>
 
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Tag</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var moneyItem in moneyItems)
+        {
+            <tr>
+                <td>@moneyItem.Tag</td>
+                <td>@moneyItem.Date</td>
+                <td>@moneyItem.Amount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<input class="input-group" type="text" placeholder="Description" @bind="tag" /> <br />
+<button class="btn btn-primary" @onclick="AddMoneyItem">Add Money Item</button>
+
+<br />
+<br />
+test zone
+<br />
+<br />
+
 <textarea @bind="noteContent" />
 <br />
-<button @onclick="UpdateLocalStorage">Save</button>
-<button @onclick="ClearLocalStorage">Clear</button>
+<button class="btn btn-primary" @onclick="UpdateLocalStorage">Save</button>
+<button class="btn btn-primary" @onclick="ClearLocalStorage">Clear</button>
 
 @code {
+    private List<MoneyItem> moneyItems = new List<MoneyItem>();
+    private string tag = string.Empty;
+
+    private void AddMoneyItem()
+    {
+        MoneyItem newMonItem = new MoneyItem();
+        newMonItem.Tag = tag;
+
+        moneyItems.Add(newMonItem);
+    }
+
+    /// <summary>
+    /// local storage usage
+    /// </summary>
     const string noteKey = "note";
     string noteContent = string.Empty;
 
