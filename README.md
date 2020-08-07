@@ -12,6 +12,5 @@ On your way to SavaDay!
 
 Developed by Krasen Ivanov<br />
 Built using Blazor and .Net Core<br />
-The source code is here <a href="https://github.com/Krasen007/SavaDay">https://github.com/Krasen007/SavaDay</a> <br />
 
 <div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
