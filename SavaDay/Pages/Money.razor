@@ -7,6 +7,7 @@
 <table class="table">
     <thead class="thead-light">
         <tr>
+            <th>Id</th>
             <th>Tag</th>
             <th>Date</th>
             <th>Amount</th>
@@ -16,6 +17,7 @@
         @foreach (var moneyItem in moneyItems)
         {
             <tr>
+                <td>@moneyItem.Id</td>
                 <td>@moneyItem.Tag</td>
                 <td>@moneyItem.Date</td>
                 <td>@moneyItem.Amount</td>
@@ -24,12 +26,27 @@
     </tbody>
 </table>
 
-<input class="input-group" type="text" placeholder="Description" @bind="tag" /> <br />
+<form class="form-check-inline">
+<div class="form-group">
+<input type="number" placeholder="Tx ID" class="form-control" @bind="id" disabled/>
+</div>
+<div class="form-group">
+<input type="text" placeholder="Tag" class="form-control" @bind="tag" />
+</div>
+<div class="form-group">
+<input type="text" placeholder="Date" class="form-control" @bind="date" />
+</div>
+<div class="form-group">
+<input type="number" placeholder="Amount" class="form-control" @bind="amount" />
+</div>
+</form>
+
+<br />
 <button class="btn btn-primary" @onclick="AddMoneyItem">Add Money Item</button>
 
 <br />
 <br />
-test zone
+*** test zone ***
 <br />
 <br />
 
@@ -40,12 +57,19 @@ test zone
 
 @code {
     private List<MoneyItem> moneyItems = new List<MoneyItem>();
+    private int id = 0;
     private string tag = string.Empty;
+    private string date = string.Empty;
+    private double amount = 0.00;
 
     private void AddMoneyItem()
     {
         MoneyItem newMonItem = new MoneyItem();
+        newMonItem.Id = id;
+        id++;
         newMonItem.Tag = tag;
+        newMonItem.Date = date;
+        newMonItem.Amount = amount;
 
         moneyItems.Add(newMonItem);
     }

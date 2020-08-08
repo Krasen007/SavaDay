@@ -2,10 +2,12 @@
 {
     public class MoneyItem
     {
-        public string Tag { get; set; } = "";
+        public int Id { get; set; } = 0;
 
-        public string Date { get; set; } = "";
+        public string Tag { get; set; } = string.Empty;
 
-        public string Amount { get; set; } = "";
+        public string Date { get; set; } = string.Empty;
+
+        public double Amount { get; set; } = 0.00;
     }
 }
