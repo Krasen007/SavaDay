@@ -8,6 +8,31 @@ a, .btn-link {
     color: #006600;
 }
 
+/* .btn-primary {
+    color: #fff;
+    background-color: #830028;
+    border-color: #760024; }
+    .btn-primary:hover {
+      color: #fff;
+      background-color: #830028;
+      border-color: #760024; }
+    .btn-primary:focus, .btn-primary.focus {
+      -webkit-box-shadow: 0 0 0 0.2rem rgba(6, 169, 0, 0.5);
+              box-shadow: 0 0 0 0.2rem rgba(204, 157, 2, 0.5); } /* after click
+    .btn-primary.disabled, .btn-primary:disabled {
+      color: #fff;
+      background-color: #a90034;
+      border-color: #a90034; }
+    .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+      color: #fff;
+      background-color: #1308b1;
+      border-color: #6ba322; }
+      .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+        -webkit-box-shadow: 0 0 0 0.2rem rgba(169, 0, 52, 0.5);
+                box-shadow: 0 0 0 0.2rem rgba(169, 0, 52, 0.5); }
+                */
+
+/* My custom colors */
 .btn-primary {
     color: #fff;
     background-color: #339933;
@@ -19,6 +44,47 @@ a, .btn-link {
         background-color: #288328;
         border-color: #336633;
     }
+
+    .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+        box-shadow: 0 0 0 0.2rem rgba(21, 139, 10, 0.5);
+    }
+
+    /* after click*/
+    .btn-primary:focus, .btn-primary.focus {
+        box-shadow: 0 0 0 0.2rem rgba(13, 122, 3, 0.5);
+    }
+
+    .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+        color: #fff;
+        background-color: #047a28;
+    }
+
+/* test css */
+/* .btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #11cc00;
+    color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #33cc3b;
+}
+
+.btn-primary:active, .btn-primary.active {
+    background: #00990d;
+    box-shadow: none;
+} */
 
 app {
     position: relative;
