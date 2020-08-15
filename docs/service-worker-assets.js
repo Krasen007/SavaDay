@@ -5,7 +5,7 @@
       "url": ".nojekyll"
     },
     {
-      "hash": "sha256-+\/zcNDxf2b3fqCAye+JMhP\/QalcTJv6O3AjzHAAaVkg=",
+      "hash": "sha256-ZZDtg7H4m2EN2GQ0pv6x\/30JWJRZkBSa+JuuC68S5NM=",
       "url": "404.html"
     },
     {
@@ -65,7 +65,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-YYjAMesPtJNJy5KXLOc2UhWLQ1cvRbSuN4HFsWae7dU=",
+      "hash": "sha256-gxfHwseM36V7E5cPJvHKxye6OqtIp3yQivVVbXn8yRA=",
       "url": "index.html"
     },
     {
@@ -221,5 +221,5 @@
       "url": "_framework\/blazor.boot.json"
     }
   ],
-  "version": "WLs4ful2"
+  "version": "YO6RR04H"
 };
