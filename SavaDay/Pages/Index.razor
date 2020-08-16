@@ -1,5 +1,4 @@
 ﻿@page "/"
-@inject Services.AppData AppData
 
 <h1>Dashboard</h1>
 
@@ -20,81 +19,54 @@ Your last checkin was at: TODO
 <p>
     <br />
     Current increment settngs: @AppData.IncrementAmount.ToString(format: "0.00") <br />
-    Total Days: @totalDaysText<br />
-    Total amount for saving: @totalAmount.ToString(format: "0.00")<br />
-    Current date: @date2 @*, you selected @date1*@
+    Total Days: @UserModel.TotalDaysText<br />
+    Total amount for saving: @UserModel.TotalAmount.ToString(format: "0.00")<br />
+    Current date: @UserModel.Date @*, you selected @date1*@
 </p>
 
-<form class="form-check-inline">
-    @*<div class="form-group">
-            <label for="start1">Pick date:</label>
+<EditForm Model="@UserModel" OnValidSubmit="HandleValidSubmit" class="form-check-inline">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-            <input type="date" placeholder="20.3.2020" class="form-control" id="startForm" @bind="date1">
-        </div>*@
+    @*<InputText id="name" @bind-Value="UserModel.Name" />
+
+        <button type="submit">Submit</button>*@
+
     <div class="form-group">
         <label for="start1">Start date:</label>
 
-        <input type="number" min="0" class="form-control" id="startForm" @bind="startDay">
+        @*<input type="number" min="1" class="form-control" id="startForm" @bind="UserModel.StartDay">
+            <InputText id="name" @bind-Value="UserModel.Name" />*@
+        <InputNumber min="1" class="form-control" id="startForm" @bind-Value="UserModel.StartDay"></InputNumber>
     </div>
     <br />
 
     <div class="form-group">
         <label for="end">End date:</label>
 
-        <input type="number" min="0" class="form-control" id="endForm" @bind="endDay">
+        <InputNumber min="1" class="form-control" id="endForm" @bind-Value="UserModel.EndDay"></InputNumber>
     </div>
     <br />
 
     <div class="form-group">
         <label for="beginAmount">Begin amount:</label>
 
-        <input type="number" step="0.01" min="0" class="form-control" id="beginAmountForm" @bind="beginAmount">
+        <InputNumber step="0.01" min="0" class="form-control" id="beginAmountForm" @bind-Value="UserModel.BeginAmount"></InputNumber>
     </div>
     <br />
-</form>
+</EditForm>
 <br />
 
-<button class="btn btn-primary" @onclick="CalculateAmount">Calculate</button>
-<button class="btn btn-primary" @onclick="Reset">Reset</button>
+<button class="btn btn-primary" @onclick="UserModel.CalculateAmount">Calculate</button>
+<button class="btn btn-primary" @onclick="UserModel.Reset">Reset</button>
 <br />
 
 @code {
-    //private DateTime date1;
-    private DateTime date2 = DateTime.Now;
 
-    private double totalAmount = 0.00;
-    private int startDay = 0;
-    private int endDay = 0;
-    private string totalDaysText = "Click calculate";
+    private UserModel UserModel = new UserModel();
 
-    private double beginAmount = 0;
-    private double moneyTotal;
-    private int totalDays;
-
-    private void CalculateAmount()
+    private void HandleValidSubmit()
     {
-        // Clears amount if user press calculate multiple times.
-        totalAmount = 0;
-        moneyTotal = beginAmount - AppData.IncrementAmount; // Increases the amount per day with the given begin amount
-        totalDays = endDay - startDay;
-
-        for (int i = 0; i <= totalDays; i++)
-        {
-            moneyTotal = moneyTotal + AppData.IncrementAmount;
-            totalAmount += moneyTotal;
-        }
-
-        totalDaysText = (totalDays + 1 /*accounts for dates like start 1 end 2 = should be 2 days */).ToString();
-    }
-
-    private void Reset()
-    {
-        moneyTotal = 0;
-        totalAmount = 0;
-        totalDaysText = "Click calculate";
-
-        startDay = 0;
-        endDay = 0;
-        beginAmount = 0;
+        Console.WriteLine("OnValidSubmit");
     }
 }
