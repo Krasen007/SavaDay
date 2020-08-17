@@ -1,7 +1,6 @@
 # SavaDay
 
 With SavaDay you can manage easy savings every day!
-
 <br />
 Go to settings and set daily saving increment.
 <br />
@@ -10,11 +9,11 @@ Then every day you will need to save some increasing amount in your jar, and at 
 On your way to SavaDay!
 <br />
 <br />
-The live version is here <a href="https://krasen007.github.io/SavaDay/">https://krasen007.github.io/SavaDay/</a>
+The live version is here <a href="https://krasen007.github.io/SavaDay/">https://krasen007.github.io/SavaDay/</a><br />
 <br />
-<img src="ver-0.10.1.png">
+<img src="ver-0.10.1.png"><br />
+<i>Image is from version 0.10.1</i>
 <br />
-
 Developed by Krasen Ivanov<br />
 Built using Blazor and .Net Core<br />
 
