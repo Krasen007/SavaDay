@@ -12,6 +12,43 @@ Go to settings and set daily saving increment.
 On your way to SavaDay!
 <br />
 <br />
+TODO: fill table with day inrements and check them off
+<br />
+<br />
+<table class="table table-striped table-bordered table-sm">
+    <thead>
+        <tr>
+            @for (int monthCol = 1; monthCol <= AppData.ColUserDateSelection; monthCol++)
+            {
+                <th>Month @monthCol</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (int row = 1; row <= AppData.RowUserDateSelection; row++)
+        {
+            <tr>
+
+                @for (int col = 1; col <= AppData.ColUserDateSelection; col++)
+                {
+                    <td>
+                        row @row
+
+                        col @col
+
+                        @if (true)
+                        {
+                            tempIncr += 0.01;
+                            @tempIncr.ToString("0.00");
+                        }
+
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
 Your balance right now is: TODO
 <br />
 Your last checkin was at: TODO
@@ -62,6 +99,7 @@ Your last checkin was at: TODO
 <br />
 
 @code {
+    private double tempIncr = 0.00;
 
     private UserModel UserModel = new UserModel();
 
