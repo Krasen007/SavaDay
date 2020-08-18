@@ -2,22 +2,24 @@
 
 <h1>Dashboard</h1>
 
+<p>
 Welcome to your new app.
 <br />
 <br />
 Here you can track your savings.
 <br />
-Go to settings and set daily saving increment.
 <br />
+Go to <NavLink class="nav-link" href="settings"> <span class="oi oi-chevron-right" > Settings </span> </NavLink> and set daily saving increment.
 On your way to SavaDay!
-<br />
-<br />
+</p>
+
+<p>
 Your balance right now is: TODO
 <br />
 Your last checkin was at: TODO
+</p>
 
 <p>
-    <br />
     Current increment settngs: @AppData.IncrementAmount.ToString(format: "0.00") <br />
     Total Days: @UserModel.TotalDaysText<br />
     Total amount for saving: @UserModel.TotalAmount.ToString(format: "0.00")<br />
@@ -28,15 +30,9 @@ Your last checkin was at: TODO
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    @*<InputText id="name" @bind-Value="UserModel.Name" />
-
-        <button type="submit">Submit</button>*@
-
     <div class="form-group">
         <label for="start1">Start date:</label>
 
-        @*<input type="number" min="1" class="form-control" id="startForm" @bind="UserModel.StartDay">
-            <InputText id="name" @bind-Value="UserModel.Name" />*@
         <InputNumber min="1" class="form-control" id="startForm" @bind-Value="UserModel.StartDay"></InputNumber>
     </div>
     <br />
@@ -47,11 +43,13 @@ Your last checkin was at: TODO
         <InputNumber min="1" class="form-control" id="endForm" @bind-Value="UserModel.EndDay"></InputNumber>
     </div>
     <br />
-
-    <div class="form-group">
+<div class="form-group">
         <label for="beginAmount">Begin amount:</label>
-
-        <InputNumber step="0.01" min="0" class="form-control" id="beginAmountForm" @bind-Value="UserModel.BeginAmount"></InputNumber>
+    <div class="input-group-prepend">
+                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+                
+        <InputNumber step="0.01" inputmode="decimal" min="0" class="form-control" id="beginAmountForm" @bind-Value="UserModel.BeginAmount"></InputNumber>
+    </div>
     </div>
     <br />
 </EditForm>
@@ -62,7 +60,6 @@ Your last checkin was at: TODO
 <br />
 
 @code {
-
     private UserModel UserModel = new UserModel();
 
     private void HandleValidSubmit()
