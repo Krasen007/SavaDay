@@ -64,31 +64,25 @@ TODO: fill table with day inrements and check them off
 <br />
 <table class="table table-striped table-bordered table-sm">
     <thead>
-        <tr>
-            @for (int monthCol = 1; monthCol <= AppData.ColUserDateSelection; monthCol++)
-            {
-                <th>Month @monthCol</th>
-            }
-        </tr>
-    </thead>
+        @for (int col = 0; col <= AppData.RowUserDateSelection; col++)
+                {
+                    <th>Day @col</th>
+                }
+        </thead>
     <tbody>
-        @for (int row = 1; row <= AppData.RowUserDateSelection; row++)
+        @for (int row = 1; row <= AppData.ColUserDateSelection; row++)
         {
             <tr>
+                <th>Month @row</th>
 
-                @for (int col = 1; col <= AppData.ColUserDateSelection; col++)
+                @for (int col = 1; col <= AppData.RowUserDateSelection; col++)
                 {
                     <td>
-                        row @row
-
-                        col @col
-
                         @if (true)
                         {
                             tempIncr += 0.01;
                             @tempIncr.ToString("0.00");
                         }
-
                     </td>
                 }
             </tr>
