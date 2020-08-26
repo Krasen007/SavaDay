@@ -3,26 +3,27 @@
 <h1>Dashboard</h1>
 
 <p>
-Welcome to your new app.
-<br />
-<br />
-Here you can track your savings.
-<br />
-<br />
-Go to <NavLink class="nav-link" href="settings"> <span class="oi oi-chevron-right" > Settings </span> </NavLink> and set daily saving increment.
-On your way to SavaDay!
-<br />
-<br />
-Your balance right now is: TODO
-<br />
-Your last checkin was at: TODO
+    Welcome to your new app.
+    <br />
+    <br />
+    Here you can track your savings.
+    <br />
+    <br />
+    Go to <b><a href="/settings">Settings</a></b> and set daily saving increment. 
+    <br />
+    On your way to SavaDay!
+    <br />
+    <br />
+    Your balance right now is: TODO
+    <br />
+    Your last checkin was at: TODO
 </p>
 
 <p>
-    Current increment settngs: @AppData.IncrementAmount.ToString(format: "0.00") <br />
-    Total Days: @UserModel.TotalDaysText<br />
-    Total amount for saving: @UserModel.TotalAmount.ToString(format: "0.00")<br />
-    Current date: @UserModel.Date @*, you selected @date1*@
+    Current increment settngs: <b>@AppData.IncrementAmount.ToString(format: "0.00")</b> <br />
+    Total Days: <b>@UserModel.TotalDaysText</b><br />
+    Total amount for saving: <b>@UserModel.TotalAmount.ToString(format: "0.00")</b><br />
+    Current date: <b>@UserModel.Date</b> @*, you selected @date1*@
 </p>
 
 <EditForm Model="@UserModel" OnValidSubmit="HandleValidSubmit" class="form-check-inline">
@@ -42,13 +43,13 @@ Your last checkin was at: TODO
         <InputNumber min="1" class="form-control" id="endForm" @bind-Value="UserModel.EndDay"></InputNumber>
     </div>
     <br />
-<div class="form-group">
+    <div class="form-group">
         <label for="beginAmount">Begin amount:</label>
-    <div class="input-group-prepend">
-                    <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
-                
-        <InputNumber step="0.01" inputmode="decimal" min="0" class="form-control" id="beginAmountForm" @bind-Value="UserModel.BeginAmount"></InputNumber>
-    </div>
+        <div class="input-group-prepend">
+            <span class="input-group-text">@(NumberFormatInfo.CurrentInfo.CurrencySymbol)</span>
+
+            <InputNumber step="0.01" inputmode="decimal" min="0" class="form-control" id="beginAmountForm" @bind-Value="UserModel.BeginAmount"></InputNumber>
+        </div>
     </div>
     <br />
 </EditForm>
@@ -58,17 +59,21 @@ Your last checkin was at: TODO
 <button class="btn btn-primary" @onclick="UserModel.Reset">Reset</button>
 <br />
 <br />
-@* Test table *@
+
+@* Test table, currently it auto updates and it should not *@
 TODO: fill table with day inrements and check them off
 <br />
 <br />
+<p>For example here is possible scenario for savings trough the year:</p>
 <table class="table table-striped table-bordered table-sm">
     <thead>
-        @for (int col = 0; col <= AppData.RowUserDateSelection; col++)
-                {
-                    <th>Day @col</th>
-                }
-        </thead>
+        <tr>
+            @for (int col = 0; col <= AppData.RowUserDateSelection; col++)
+            {
+                <th>Day @col</th>
+            }
+        </tr>
+    </thead>
     <tbody>
         @for (int row = 1; row <= AppData.ColUserDateSelection; row++)
         {
@@ -89,7 +94,6 @@ TODO: fill table with day inrements and check them off
         }
     </tbody>
 </table>
-
 
 @code {
     private double tempIncr = 0.00;
