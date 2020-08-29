@@ -41,7 +41,7 @@ namespace SavaDay.Services
                 this.TotalAmount += moneyTotal;
             }
 
-            this.TotalDaysText = (totalDays + 1 /*accounts for dates like start 1 end 2 = should be 2 days */).ToString();
+            this.TotalDaysText = (totalDays + 1 /* Accounts for dates like start 1 end 2 = should be 2 days */).ToString();
         }
 
         public void Reset()
