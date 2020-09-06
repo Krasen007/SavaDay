@@ -1,23 +1,58 @@
 ﻿@page "/"
+@inject Blazored.LocalStorage.ILocalStorageService localStore
 
 <h1>Dashboard</h1>
 
 <p>
     Welcome to your new app.
     <br />
-    <br />
     Here you can track your savings.
-    <br />
     <br />
     Go to <b><a href="/settings">Settings</a></b> and set daily saving increment. 
     <br />
     On your way to SavaDay!
     <br />
+    <br />    
+    Your last known balance is: @lastBalance <br />
+    The last day of year the app was used is: @lastUsedDate <br />
+    Today day of year number is: @today <br />
+    Projected savings for today will be: @projectedBalance 
     <br />
-    Your balance right now is: TODO (maybe use current day number and just the calculation form 1 do n-day, this of course is not right but for now will do)
-    <br />
-    Your last checkin was at: TODO
 </p>
+
+@code {
+    /// <summary>
+    /// local storage usage
+    /// </summary>
+    const string balanceKey = "lastBalance";
+    const string lastDayKey = "lastUsedDay";
+
+    double lastBalance;
+    double projectedBalance;
+    int today = DateTime.Now.DayOfYear;
+    int lastUsedDate;
+
+    public async void UpdateLocalStorage()
+    {
+        UserModel.CalculateAmount();
+        lastBalance += UserModel.TotalAmount;
+        await localStore.SetItemAsync(balanceKey, lastBalance);
+        await localStore.SetItemAsync(lastDayKey, today);
+    }
+
+    public async void ClearLocalStorage()
+    {
+        lastBalance = 0;
+        await localStore.ClearAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        lastBalance = await localStore.GetItemAsync<double>(balanceKey);
+        lastUsedDate = await localStore.GetItemAsync<int>(lastDayKey);
+        projectedBalance = UserModel.CalcOnlyAmount(lastUsedDate, today);
+    } 
+}
 
 <p>
     Current increment settngs: <b>@AppData.IncrementAmount.ToString(format: "0.00")</b> <br />
@@ -55,13 +90,17 @@
 </EditForm>
 <br />
 
-<button class="btn btn-primary" @onclick="UserModel.CalculateAmount">Calculate</button>
+<button class="btn btn-primary" @onclick="UpdateLocalStorage">Calculate</button>
 <button class="btn btn-primary" @onclick="UserModel.Reset">Reset</button>
 <br />
 <br />
 
 @* Test table, currently it auto updates and it should not *@
-TODO: fill table with day inrements and check them off
+NON WORKING ZONE<br />
+NON WORKING ZONE<br />
+NON WORKING ZONE<br />
+<br />
+TODO: fill table with day inrements and ability to check them off
 <br />
 <br />
 <p>For example here is possible scenario for savings trough the year:</p>
@@ -104,4 +143,14 @@ TODO: fill table with day inrements and check them off
     {
         Console.WriteLine("OnValidSubmit");
     }
+
+    private void Test()
+    {
+        Console.WriteLine(UserModel.CalcOnlyAmount(lastUsedDate, today));
+    }
 }
+
+<button class="btn btn-info" @onclick="ClearLocalStorage">Clear last balance from localStorage</button>
+<button class="btn btn-primary" @onclick="Test">test</button>
+<br />
+<p></p>
