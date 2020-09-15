@@ -51,7 +51,7 @@
         lastBalance = await localStore.GetItemAsync<double>(balanceKey);
         lastUsedDate = await localStore.GetItemAsync<int>(lastDayKey);
         projectedBalance = UserModel.CalcOnlyAmount(lastUsedDate, today);
-    } 
+    }
 }
 
 <p>

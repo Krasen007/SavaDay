@@ -1,7 +1,8 @@
 {
   "name": "SavaDay",
   "short_name": "SavaDay",
-  "start_url": "./",
+  "description": "Save every day and build a fortune.",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#006600",
