@@ -8,15 +8,15 @@
     <br />
     Here you can track your savings.
     <br />
-    Go to <b><a href="/settings">Settings</a></b> and set daily saving increment. 
+    Go to <b><a href="/settings">Settings</a></b> and set daily saving increment.
     <br />
     On your way to SavaDay!
     <br />
-    <br />    
-    Your last known balance is: @lastBalance <br />
-    The last day of year the app was used is: @lastUsedDate <br />
-    Today day of year number is: @today <br />
-    Projected savings for today will be: @projectedBalance 
+    <br />
+    Your last known balance is: @lastKnownBalance <br />
+    The last day of year the app was used is: @lastUsedIntDate <br />
+    Today day of year number is: @todaysIntDay <br />
+    Projected savings for today will be: @projectedBalance
     <br />
 </p>
 
@@ -25,32 +25,32 @@
     /// local storage usage
     /// </summary>
     const string balanceKey = "lastBalance";
-    const string lastDayKey = "lastUsedDay";
+    const string lastDayIntKey = "lastUsedDay";
 
-    double lastBalance;
+    double lastKnownBalance;
     double projectedBalance;
-    int today = DateTime.Now.DayOfYear;
-    int lastUsedDate;
+    int todaysIntDay = DateTime.Now.DayOfYear;
+    int lastUsedIntDate;
 
     public async void UpdateLocalStorage()
     {
         UserModel.CalculateAmount();
-        lastBalance += UserModel.TotalAmount;
-        await localStore.SetItemAsync(balanceKey, lastBalance);
-        await localStore.SetItemAsync(lastDayKey, today);
+        lastKnownBalance += UserModel.TotalAmount;
+        await localStore.SetItemAsync(balanceKey, lastKnownBalance);
+        await localStore.SetItemAsync(lastDayIntKey, todaysIntDay);
     }
 
     public async void ClearLocalStorage()
     {
-        lastBalance = 0;
+        lastKnownBalance = 0;
         await localStore.ClearAsync();
     }
 
     protected override async Task OnInitializedAsync()
     {
-        lastBalance = await localStore.GetItemAsync<double>(balanceKey);
-        lastUsedDate = await localStore.GetItemAsync<int>(lastDayKey);
-        projectedBalance = UserModel.CalcOnlyAmount(lastUsedDate, today);
+        lastKnownBalance = await localStore.GetItemAsync<double>(balanceKey);
+        lastUsedIntDate = await localStore.GetItemAsync<int>(lastDayIntKey);
+        projectedBalance = UserModel.CalcOnlyAmount(lastUsedIntDate, todaysIntDay);
     }
 }
 
@@ -96,9 +96,12 @@
 <br />
 
 @* Test table, currently it auto updates and it should not *@
-NON WORKING ZONE<br />
-NON WORKING ZONE<br />
-NON WORKING ZONE<br />
+NON WORKING ZONE
+<br />
+NON WORKING ZONE
+<br />
+NON WORKING ZONE
+<br />
 <br />
 TODO: fill table with day inrements and ability to check them off
 <br />
@@ -146,7 +149,7 @@ TODO: fill table with day inrements and ability to check them off
 
     private void Test()
     {
-        Console.WriteLine(UserModel.CalcOnlyAmount(lastUsedDate, today));
+        Console.WriteLine(UserModel.CalcOnlyAmount(lastUsedIntDate, todaysIntDay));
     }
 }
 
